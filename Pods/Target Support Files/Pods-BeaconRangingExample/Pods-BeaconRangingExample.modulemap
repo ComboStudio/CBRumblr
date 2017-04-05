@@ -1,0 +1,6 @@
+framework module Pods_BeaconRangingExample {
+  umbrella header "Pods-BeaconRangingExample-umbrella.h"
+
+  export *
+  module * { export * }
+}

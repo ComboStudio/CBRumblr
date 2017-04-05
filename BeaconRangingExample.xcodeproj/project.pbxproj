@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */; };
+		A92F36B21E8BD9BB00D61049 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36B11E8BD9BB00D61049 /* ViewController.swift */; };
+		A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B61E8BD9BB00D61049 /* Assets.xcassets */; };
+		A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */; };
+		A92F36C31E8BDCCE00D61049 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92F36C21E8BDCCE00D61049 /* CoreBluetooth.framework */; };
+		A92F36C51E8BDEE600D61049 /* beacons.json in Resources */ = {isa = PBXBuildFile; fileRef = A92F36C41E8BDEE600D61049 /* beacons.json */; };
+		A961A1781E952F7D002AD417 /* BREEntranceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1771E952F7D002AD417 /* BREEntranceController.swift */; };
+		A961A17A1E952F8D002AD417 /* BREUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1791E952F8D002AD417 /* BREUtilities.swift */; };
+		A961A17C1E952FB1002AD417 /* BREBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A17B1E952FB1002AD417 /* BREBeacon.swift */; };
+		A961A17E1E952FD8002AD417 /* BREPushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A17D1E952FD8002AD417 /* BREPushNotificationController.swift */; };
+		A961A1801E95302E002AD417 /* BRELocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A17F1E95302E002AD417 /* BRELocationManager.swift */; };
+		A961A1821E9532DE002AD417 /* BREConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1811E9532DE002AD417 /* BREConstants.swift */; };
+		A961A1841E953337002AD417 /* BRETrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1831E953337002AD417 /* BRETrack.swift */; };
+		A961A1861E9536D0002AD417 /* BREFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1851E9536D0002AD417 /* BREFileManager.swift */; };
+		A961A1881E954191002AD417 /* BREAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1871E954191002AD417 /* BREAPIController.swift */; };
+		A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA757F1E955C3000079838 /* BREHomeViewController.swift */; };
+		A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75841E9561C800079838 /* BRERoundButton.swift */; };
+		A9BA75871E95970700079838 /* BRESelectTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */; };
+		A9BA75891E95979900079838 /* BRESearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75881E95979900079838 /* BRESearchField.swift */; };
+		A9BA758B1E9598BC00079838 /* BRETrackTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA758A1E9598BC00079838 /* BRETrackTableView.swift */; };
+		A9BA758D1E9598C700079838 /* BRETrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */; };
+		A9BA758F1E95A1BC00079838 /* BRENavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */; };
+		A9BA75911E95A33800079838 /* BRESearchSpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75901E95A33800079838 /* BRESearchSpotifyController.swift */; };
+		EA357C9862F70490A6E09AD7 /* Pods_BeaconRangingExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeaconRangingExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.debug.xcconfig"; sourceTree = "<group>"; };
+		A92F36AC1E8BD9BB00D61049 /* BeaconRangingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeaconRangingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A92F36B11E8BD9BB00D61049 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A92F36B61E8BD9BB00D61049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A92F36B91E8BD9BB00D61049 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A92F36BB1E8BD9BB00D61049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A92F36C21E8BDCCE00D61049 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		A92F36C41E8BDEE600D61049 /* beacons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beacons.json; sourceTree = "<group>"; };
+		A961A1771E952F7D002AD417 /* BREEntranceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREEntranceController.swift; sourceTree = "<group>"; };
+		A961A1791E952F8D002AD417 /* BREUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREUtilities.swift; sourceTree = "<group>"; };
+		A961A17B1E952FB1002AD417 /* BREBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREBeacon.swift; sourceTree = "<group>"; };
+		A961A17D1E952FD8002AD417 /* BREPushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREPushNotificationController.swift; sourceTree = "<group>"; };
+		A961A17F1E95302E002AD417 /* BRELocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRELocationManager.swift; sourceTree = "<group>"; };
+		A961A1811E9532DE002AD417 /* BREConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREConstants.swift; sourceTree = "<group>"; };
+		A961A1831E953337002AD417 /* BRETrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrack.swift; sourceTree = "<group>"; };
+		A961A1851E9536D0002AD417 /* BREFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREFileManager.swift; sourceTree = "<group>"; };
+		A961A1871E954191002AD417 /* BREAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREAPIController.swift; sourceTree = "<group>"; };
+		A9BA757F1E955C3000079838 /* BREHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREHomeViewController.swift; sourceTree = "<group>"; };
+		A9BA75841E9561C800079838 /* BRERoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRERoundButton.swift; sourceTree = "<group>"; };
+		A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRESelectTrackViewController.swift; sourceTree = "<group>"; };
+		A9BA75881E95979900079838 /* BRESearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRESearchField.swift; sourceTree = "<group>"; };
+		A9BA758A1E9598BC00079838 /* BRETrackTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrackTableView.swift; sourceTree = "<group>"; };
+		A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrackTableViewCell.swift; sourceTree = "<group>"; };
+		A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRENavigationViewController.swift; sourceTree = "<group>"; };
+		A9BA75901E95A33800079838 /* BRESearchSpotifyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRESearchSpotifyController.swift; sourceTree = "<group>"; };
+		EAB787062E16175AE095F1F1 /* Pods-BeaconRangingExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A92F36A91E8BD9BB00D61049 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A92F36C31E8BDCCE00D61049 /* CoreBluetooth.framework in Frameworks */,
+				EA357C9862F70490A6E09AD7 /* Pods_BeaconRangingExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		799C795A98F5858A4386EE30 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */,
+				EAB787062E16175AE095F1F1 /* Pods-BeaconRangingExample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A92F36A31E8BD9BB00D61049 = {
+			isa = PBXGroup;
+			children = (
+				A92F36AE1E8BD9BB00D61049 /* BeaconRangingExample */,
+				A92F36AD1E8BD9BB00D61049 /* Products */,
+				A92F36C11E8BDCCD00D61049 /* Frameworks */,
+				799C795A98F5858A4386EE30 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		A92F36AD1E8BD9BB00D61049 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A92F36AC1E8BD9BB00D61049 /* BeaconRangingExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A92F36AE1E8BD9BB00D61049 /* BeaconRangingExample */ = {
+			isa = PBXGroup;
+			children = (
+				A9BA75831E9561B700079838 /* Views */,
+				A9BA75821E955C3700079838 /* Controllers */,
+				A9BA75811E955C3200079838 /* View Controllers */,
+				A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */,
+				A92F36B11E8BD9BB00D61049 /* ViewController.swift */,
+				A92F36B61E8BD9BB00D61049 /* Assets.xcassets */,
+				A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */,
+				A92F36BB1E8BD9BB00D61049 /* Info.plist */,
+				A92F36C41E8BDEE600D61049 /* beacons.json */,
+				A961A1791E952F8D002AD417 /* BREUtilities.swift */,
+				A961A17B1E952FB1002AD417 /* BREBeacon.swift */,
+				A961A1771E952F7D002AD417 /* BREEntranceController.swift */,
+				A961A17D1E952FD8002AD417 /* BREPushNotificationController.swift */,
+				A961A17F1E95302E002AD417 /* BRELocationManager.swift */,
+				A961A1811E9532DE002AD417 /* BREConstants.swift */,
+				A961A1831E953337002AD417 /* BRETrack.swift */,
+				A961A1851E9536D0002AD417 /* BREFileManager.swift */,
+				A961A1871E954191002AD417 /* BREAPIController.swift */,
+			);
+			path = BeaconRangingExample;
+			sourceTree = "<group>";
+		};
+		A92F36C11E8BDCCD00D61049 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A92F36C21E8BDCCE00D61049 /* CoreBluetooth.framework */,
+				0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9BA75811E955C3200079838 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9BA757F1E955C3000079838 /* BREHomeViewController.swift */,
+				A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */,
+				A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A9BA75821E955C3700079838 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9BA75901E95A33800079838 /* BRESearchSpotifyController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A9BA75831E9561B700079838 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9BA75841E9561C800079838 /* BRERoundButton.swift */,
+				A9BA75881E95979900079838 /* BRESearchField.swift */,
+				A9BA758A1E9598BC00079838 /* BRETrackTableView.swift */,
+				A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A92F36AB1E8BD9BB00D61049 /* BeaconRangingExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A92F36BE1E8BD9BB00D61049 /* Build configuration list for PBXNativeTarget "BeaconRangingExample" */;
+			buildPhases = (
+				78F987081169308E7BBDEFF8 /* [CP] Check Pods Manifest.lock */,
+				A92F36A81E8BD9BB00D61049 /* Sources */,
+				A92F36A91E8BD9BB00D61049 /* Frameworks */,
+				A92F36AA1E8BD9BB00D61049 /* Resources */,
+				96883EFB09C68F6D55948CE1 /* [CP] Embed Pods Frameworks */,
+				30382D8F292FB2B3EBF697C4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeaconRangingExample;
+			productName = BeaconRangingExample;
+			productReference = A92F36AC1E8BD9BB00D61049 /* BeaconRangingExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A92F36A41E8BD9BB00D61049 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Sam Piggott";
+				TargetAttributes = {
+					A92F36AB1E8BD9BB00D61049 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = JAA59HR27W;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = A92F36A71E8BD9BB00D61049 /* Build configuration list for PBXProject "BeaconRangingExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A92F36A31E8BD9BB00D61049;
+			productRefGroup = A92F36AD1E8BD9BB00D61049 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A92F36AB1E8BD9BB00D61049 /* BeaconRangingExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A92F36AA1E8BD9BB00D61049 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */,
+				A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */,
+				A92F36C51E8BDEE600D61049 /* beacons.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30382D8F292FB2B3EBF697C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78F987081169308E7BBDEFF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		96883EFB09C68F6D55948CE1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A92F36A81E8BD9BB00D61049 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A92F36B21E8BD9BB00D61049 /* ViewController.swift in Sources */,
+				A961A1881E954191002AD417 /* BREAPIController.swift in Sources */,
+				A9BA75871E95970700079838 /* BRESelectTrackViewController.swift in Sources */,
+				A9BA758B1E9598BC00079838 /* BRETrackTableView.swift in Sources */,
+				A961A1861E9536D0002AD417 /* BREFileManager.swift in Sources */,
+				A961A1781E952F7D002AD417 /* BREEntranceController.swift in Sources */,
+				A9BA75891E95979900079838 /* BRESearchField.swift in Sources */,
+				A961A17A1E952F8D002AD417 /* BREUtilities.swift in Sources */,
+				A961A1821E9532DE002AD417 /* BREConstants.swift in Sources */,
+				A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */,
+				A9BA75911E95A33800079838 /* BRESearchSpotifyController.swift in Sources */,
+				A9BA758D1E9598C700079838 /* BRETrackTableViewCell.swift in Sources */,
+				A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */,
+				A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */,
+				A961A1841E953337002AD417 /* BRETrack.swift in Sources */,
+				A961A17E1E952FD8002AD417 /* BREPushNotificationController.swift in Sources */,
+				A961A17C1E952FB1002AD417 /* BREBeacon.swift in Sources */,
+				A9BA758F1E95A1BC00079838 /* BRENavigationViewController.swift in Sources */,
+				A961A1801E95302E002AD417 /* BRELocationManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A92F36B91E8BD9BB00D61049 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A92F36BC1E8BD9BB00D61049 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A92F36BD1E8BD9BB00D61049 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A92F36BF1E8BD9BB00D61049 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JAA59HR27W;
+				INFOPLIST_FILE = BeaconRangingExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fm.combo.BeaconRangingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A92F36C01E8BD9BB00D61049 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB787062E16175AE095F1F1 /* Pods-BeaconRangingExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JAA59HR27W;
+				INFOPLIST_FILE = BeaconRangingExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fm.combo.BeaconRangingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A92F36A71E8BD9BB00D61049 /* Build configuration list for PBXProject "BeaconRangingExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A92F36BC1E8BD9BB00D61049 /* Debug */,
+				A92F36BD1E8BD9BB00D61049 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A92F36BE1E8BD9BB00D61049 /* Build configuration list for PBXNativeTarget "BeaconRangingExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A92F36BF1E8BD9BB00D61049 /* Debug */,
+				A92F36C01E8BD9BB00D61049 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A92F36A41E8BD9BB00D61049 /* Project object */;
+}
