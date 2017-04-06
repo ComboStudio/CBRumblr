@@ -21,6 +21,7 @@
 		A961A1841E953337002AD417 /* BRETrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1831E953337002AD417 /* BRETrack.swift */; };
 		A961A1861E9536D0002AD417 /* BREFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1851E9536D0002AD417 /* BREFileManager.swift */; };
 		A961A1881E954191002AD417 /* BREAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1871E954191002AD417 /* BREAPIController.swift */; };
+		A976728B1E96B756004C40B1 /* BREBeaconRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976728A1E96B756004C40B1 /* BREBeaconRegion.swift */; };
 		A9B438DC1E964CC400083B17 /* BREScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B438DB1E964CC400083B17 /* BREScanningViewController.swift */; };
 		A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA757F1E955C3000079838 /* BREHomeViewController.swift */; };
 		A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75841E9561C800079838 /* BRERoundButton.swift */; };
@@ -52,6 +53,7 @@
 		A961A1831E953337002AD417 /* BRETrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrack.swift; sourceTree = "<group>"; };
 		A961A1851E9536D0002AD417 /* BREFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREFileManager.swift; sourceTree = "<group>"; };
 		A961A1871E954191002AD417 /* BREAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREAPIController.swift; sourceTree = "<group>"; };
+		A976728A1E96B756004C40B1 /* BREBeaconRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREBeaconRegion.swift; sourceTree = "<group>"; };
 		A9B438DB1E964CC400083B17 /* BREScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREScanningViewController.swift; sourceTree = "<group>"; };
 		A9BA757F1E955C3000079838 /* BREHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREHomeViewController.swift; sourceTree = "<group>"; };
 		A9BA75841E9561C800079838 /* BRERoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRERoundButton.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		A92F36AE1E8BD9BB00D61049 /* BeaconRangingExample */ = {
 			isa = PBXGroup;
 			children = (
+				A97672891E96B742004C40B1 /* Models */,
 				A9BA75831E9561B700079838 /* Views */,
 				A9BA75821E955C3700079838 /* Controllers */,
 				A9BA75811E955C3200079838 /* View Controllers */,
@@ -116,12 +119,10 @@
 				A92F36BB1E8BD9BB00D61049 /* Info.plist */,
 				A92F36C41E8BDEE600D61049 /* beacons.json */,
 				A961A1791E952F8D002AD417 /* BREUtilities.swift */,
-				A961A17B1E952FB1002AD417 /* BREBeacon.swift */,
 				A961A1771E952F7D002AD417 /* BREEntranceController.swift */,
 				A961A17D1E952FD8002AD417 /* BREPushNotificationController.swift */,
 				A961A17F1E95302E002AD417 /* BRELocationManager.swift */,
 				A961A1811E9532DE002AD417 /* BREConstants.swift */,
-				A961A1831E953337002AD417 /* BRETrack.swift */,
 				A961A1851E9536D0002AD417 /* BREFileManager.swift */,
 				A961A1871E954191002AD417 /* BREAPIController.swift */,
 			);
@@ -135,6 +136,16 @@
 				0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A97672891E96B742004C40B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A961A17B1E952FB1002AD417 /* BREBeacon.swift */,
+				A961A1831E953337002AD417 /* BRETrack.swift */,
+				A976728A1E96B756004C40B1 /* BREBeaconRegion.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		A9BA75811E955C3200079838 /* View Controllers */ = {
@@ -305,6 +316,7 @@
 				A961A17A1E952F8D002AD417 /* BREUtilities.swift in Sources */,
 				A961A1821E9532DE002AD417 /* BREConstants.swift in Sources */,
 				A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */,
+				A976728B1E96B756004C40B1 /* BREBeaconRegion.swift in Sources */,
 				A9BA75911E95A33800079838 /* BRESearchSpotifyController.swift in Sources */,
 				A9BA758D1E9598C700079838 /* BRETrackTableViewCell.swift in Sources */,
 				A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */,

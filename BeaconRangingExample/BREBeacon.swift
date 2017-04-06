@@ -22,29 +22,13 @@ enum BREBeaconStrength:Int {
 class BREBeacon {
     
     var title:String
-    var uuid:UUID
     var major:Int
     var minor:Int
     var strength:BREBeaconStrength
     
-    lazy var region:CLBeaconRegion = {
-        
-        let region = CLBeaconRegion(proximityUUID: self.uuid, major: CLBeaconMajorValue(self.major), minor: CLBeaconMajorValue(self.minor), identifier: self.title)
-        region.notifyEntryStateOnDisplay = true
-        return region
-        
-    }()
-    
     init(dictionary:[String:Any]) {
         
         title = dictionary["beacon_name"] as! String
-        
-        uuid = {
-            
-            let uuid = dictionary["uuid"] as! String
-            return UUID(uuidString: uuid)!
-            
-        }()
         
         major = dictionary["major"] as! Int
         minor = dictionary["minor"] as! Int

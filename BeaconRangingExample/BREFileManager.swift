@@ -38,14 +38,10 @@ class BREFileManager {
     class func fetchFile(name:String) -> Data? {
         
         let path = documentsDirectory + "/" + name
-        
-        print(path)
-        
+                
         if FileManager.default.fileExists(atPath: path) == false { return nil }
         
         let data = try? Data(contentsOf: URL(fileURLWithPath: path))
-        
-        print(data)
         
         return data
         
