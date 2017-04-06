@@ -53,7 +53,6 @@ class BRESearchSpotifyController {
     
     func performRequest(request:BRESpotifyRequest, completionBlock: @escaping (_ success:Bool, _ error:Error?, _ response:[String:Any]?) -> Void) {
         
-        
         guard var urlComponents = URLComponents(string: BRESpotifyRoot.absoluteString + request.path) else { return }
         urlComponents.queryItems = request.queryItems
         guard let url = urlComponents.url else { return }

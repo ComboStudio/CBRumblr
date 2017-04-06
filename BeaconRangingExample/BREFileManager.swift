@@ -39,9 +39,15 @@ class BREFileManager {
         
         let path = documentsDirectory + "/" + name
         
+        print(path)
+        
         if FileManager.default.fileExists(atPath: path) == false { return nil }
         
-        return try? Data(contentsOf: URL(fileURLWithPath: path))
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path))
+        
+        print(data)
+        
+        return data
         
     }
     

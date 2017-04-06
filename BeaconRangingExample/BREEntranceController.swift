@@ -30,18 +30,15 @@ class BREEntranceController: NSObject {
         
     }
     
-    var _activeTrack:BRETrack?
+    private var _activeTrack:BRETrack?
     var activeTrack:BRETrack? {
         
         get {
             
             if _activeTrack == nil {
             
-                guard
-                    let data = BREFileManager.fetchFile(name: BRETrackFileName),
-                    let json = try! JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],
-                    let track = BRETrack(dictionary: json)
-                    else { return nil }
+                guard let data = BREFileManager.fetchFile(name: BRETrackFileName) else { print("Couldn't fetch file"); return nil }
+                guard let track = NSKeyedUnarchiver.unarchiveObject(with: data) as? BRETrack else { print("Couldn't unarchive object"); return nil }
                 
                 _activeTrack = track
                 
@@ -62,15 +59,17 @@ class BREEntranceController: NSObject {
     
     func updateTrack(track:BRETrack) throws {
         
-        try? BREFileManager.saveFile(name: BRETrackFileName, data: track.jsonData)
+        _activeTrack = nil
+        try? BREFileManager.saveFile(name: BRETrackFileName, data: NSKeyedArchiver.archivedData(withRootObject: track))
+        
         
     }
     
     func makeEntrance() {
-        
+                
         // Should this fire? Check that we're armed before we actually start playing tracks like crazy...
         
-        guard isArmed == true else { return }
+//        guard isArmed == true else { return }
         
         // Check to make sure the track even exists...
         

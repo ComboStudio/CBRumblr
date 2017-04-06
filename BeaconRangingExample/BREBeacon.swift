@@ -57,4 +57,6 @@ class BREBeacon {
         
     }
     
+    func isInRange(rssi:Int) -> Bool { return rssi < strength.rawValue }
+    
 }

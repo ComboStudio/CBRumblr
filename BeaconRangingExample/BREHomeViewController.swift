@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class BREHomeViewController: UIViewController {
 
@@ -28,7 +29,9 @@ class BREHomeViewController: UIViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedAlbumArtwork))
         
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
         imageView.addGestureRecognizer(gestureRecognizer)
         imageView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,8 +90,9 @@ class BREHomeViewController: UIViewController {
     private lazy var buttonChangeItUp:BRERoundButton = {
        
         let button = BRERoundButton()
+        button.addTarget(self, action: #selector(BREHomeViewController.tappedChangeItUpButton), for: .touchUpInside)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.setTitle("Change it up".uppercased(), for: .normal)
+        button.setTitle("I'm ready.".uppercased(), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
@@ -123,7 +127,28 @@ class BREHomeViewController: UIViewController {
         view.setNeedsUpdateConstraints()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        layoutWithActiveTrack()
+        
+    }
 
+    func layoutWithActiveTrack() {
+        
+        guard let track = BREEntranceController.shared.activeTrack else { return }
+        
+        trackTitleLabel.text = track.title
+        trackSubtitleLabel.text = track.artist
+        
+        albumArtImageView.sd_setImage(with: track.artworkURL) { (image:UIImage?, err:Error?, cacheType:SDImageCacheType, url:URL?) in
+            
+            
+        }
+        
+    }
     
     override func updateViewConstraints() {
         
@@ -164,6 +189,13 @@ class BREHomeViewController: UIViewController {
     func tappedAlbumArtwork() {
         
         navigationController?.pushViewController(BRESelectTrackViewController(), animated: true)
+        
+        
+    }
+    
+    func tappedChangeItUpButton() {
+        
+        navigationController?.present(BREScanningViewController(), animated: true, completion: nil)
         
     }
 

@@ -12,6 +12,8 @@ class BRESelectTrackViewController: UIViewController {
 
     private var constraintsNeedUpdating = true
     
+    fileprivate var tracks:[BRETrack]?
+    
     private lazy var chooseATrackTitleLabel:UILabel = {
         
         let label = UILabel()
@@ -37,6 +39,8 @@ class BRESelectTrackViewController: UIViewController {
     fileprivate lazy var tableView:BRETrackTableView = {
        
         let tableView = BRETrackTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
         
@@ -92,7 +96,7 @@ extension BRESelectTrackViewController {
                 items.count > 0
                 else { self?.searchSpotifyFailed(); return }
             
-            self?.tableView.tracks = items.flatMap { return BRETrack(dictionary: $0) }
+            self?.tracks = items.flatMap { return BRETrack(dictionary: $0) }
             
             self?.searchSpotifyCompleted()
             
@@ -108,9 +112,7 @@ extension BRESelectTrackViewController {
     }
     
     func searchSpotifyCompleted() {
-        
-        print(self.tableView.tracks)
-        
+                
         DispatchQueue.main.async {
             
             self.tableView.reloadData()
@@ -132,6 +134,58 @@ extension BRESelectTrackViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
+        
+    }
+    
+}
+
+// Table View
+
+extension BRESelectTrackViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableViewAutomaticDimension
+        
+    }
+    
+}
+
+extension BRESelectTrackViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return tracks?.count ?? 0
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let tracks = tracks else { return tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier)! }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier) as! BRETrackTableViewCell
+        let track = tracks[indexPath.row]
+        
+        cell.layout(track: track)
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let tracks = tracks else { return }
+        
+        let track = tracks[indexPath.row]
+        try? BREEntranceController.shared.updateTrack(track: track)
+        navigationController?.popViewController(animated: true)
+        
         
     }
     

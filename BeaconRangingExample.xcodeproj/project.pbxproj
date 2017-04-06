@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */; };
-		A92F36B21E8BD9BB00D61049 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36B11E8BD9BB00D61049 /* ViewController.swift */; };
 		A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B61E8BD9BB00D61049 /* Assets.xcassets */; };
 		A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */; };
 		A92F36C31E8BDCCE00D61049 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92F36C21E8BDCCE00D61049 /* CoreBluetooth.framework */; };
@@ -22,6 +21,7 @@
 		A961A1841E953337002AD417 /* BRETrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1831E953337002AD417 /* BRETrack.swift */; };
 		A961A1861E9536D0002AD417 /* BREFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1851E9536D0002AD417 /* BREFileManager.swift */; };
 		A961A1881E954191002AD417 /* BREAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961A1871E954191002AD417 /* BREAPIController.swift */; };
+		A9B438DC1E964CC400083B17 /* BREScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B438DB1E964CC400083B17 /* BREScanningViewController.swift */; };
 		A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA757F1E955C3000079838 /* BREHomeViewController.swift */; };
 		A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75841E9561C800079838 /* BRERoundButton.swift */; };
 		A9BA75871E95970700079838 /* BRESelectTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */; };
@@ -38,7 +38,6 @@
 		42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.debug.xcconfig"; sourceTree = "<group>"; };
 		A92F36AC1E8BD9BB00D61049 /* BeaconRangingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeaconRangingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A92F36B11E8BD9BB00D61049 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A92F36B61E8BD9BB00D61049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A92F36B91E8BD9BB00D61049 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A92F36BB1E8BD9BB00D61049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		A961A1831E953337002AD417 /* BRETrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrack.swift; sourceTree = "<group>"; };
 		A961A1851E9536D0002AD417 /* BREFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREFileManager.swift; sourceTree = "<group>"; };
 		A961A1871E954191002AD417 /* BREAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREAPIController.swift; sourceTree = "<group>"; };
+		A9B438DB1E964CC400083B17 /* BREScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREScanningViewController.swift; sourceTree = "<group>"; };
 		A9BA757F1E955C3000079838 /* BREHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREHomeViewController.swift; sourceTree = "<group>"; };
 		A9BA75841E9561C800079838 /* BRERoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRERoundButton.swift; sourceTree = "<group>"; };
 		A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRESelectTrackViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +111,6 @@
 				A9BA75821E955C3700079838 /* Controllers */,
 				A9BA75811E955C3200079838 /* View Controllers */,
 				A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */,
-				A92F36B11E8BD9BB00D61049 /* ViewController.swift */,
 				A92F36B61E8BD9BB00D61049 /* Assets.xcassets */,
 				A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */,
 				A92F36BB1E8BD9BB00D61049 /* Info.plist */,
@@ -144,6 +143,7 @@
 				A9BA757F1E955C3000079838 /* BREHomeViewController.swift */,
 				A9BA75861E95970700079838 /* BRESelectTrackViewController.swift */,
 				A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */,
+				A9B438DB1E964CC400083B17 /* BREScanningViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -296,7 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A92F36B21E8BD9BB00D61049 /* ViewController.swift in Sources */,
 				A961A1881E954191002AD417 /* BREAPIController.swift in Sources */,
 				A9BA75871E95970700079838 /* BRESelectTrackViewController.swift in Sources */,
 				A9BA758B1E9598BC00079838 /* BRETrackTableView.swift in Sources */,
@@ -311,6 +310,7 @@
 				A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */,
 				A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */,
 				A961A1841E953337002AD417 /* BRETrack.swift in Sources */,
+				A9B438DC1E964CC400083B17 /* BREScanningViewController.swift in Sources */,
 				A961A17E1E952FD8002AD417 /* BREPushNotificationController.swift in Sources */,
 				A961A17C1E952FB1002AD417 /* BREBeacon.swift in Sources */,
 				A9BA758F1E95A1BC00079838 /* BRENavigationViewController.swift in Sources */,
