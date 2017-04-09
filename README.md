@@ -8,25 +8,33 @@ Welcome to the Rumblr iOS repo! If you've just stumbled across this repo, it mig
 
 Please note that you'll need a bit of a technical understanding to get this all set up - but there's a comprehensive step-by-step guide to doing so over on this blog.
 
-## Things to note
+## Getting started
 
-* Due to the limitations of the Sonos API, you'll need to make sure you're running the server on the same network that your Sonos system is connected to. Setting this up on a Raspberry Pi would be a pretty sweet and discreet way of doing this - but if you're lazy, you can just run this from any computer that has Node installed and is connected to the Sonos' network. Works just fine.
+First, make sure Cocoapods is installed, navigate to the directory in the Terminal and enter:
 
-* This doesn't support multiple Sonos systems particularly well. The way the script's written is simply to pick whichever the first Sonos the system comes across and use that (simply because we've only got one in our studio...!). If you have a Sonos IP you'd like to specifically connect to, you can set the environment variable SONOS_IP to the IP of the system. 
+	pod install
 
-* The server logic itself is written in ES6 in the /lib folder. When *npm run build* is run, it'll run babel and compile the code to /build.
+Once the associated Pods are installed, you're going to want to make a couple of file adjustments.
 
-## Starting the server
+## A note before setting up
 
-Easy as pie - just download, open Terminal, navigate to the folder and run the following:
+* **The server needs to be running on the same network as the client device AND the Sonos for this to work!** Yeah, it's far from ideal, but the Sonos bits require a bit of tunnel-y magic I haven't got round to trying yet. Would love to see any implementation of this, however!
 
-	npm install
+### Setting up for your own Beacons
 
-	npm run build
+The app works by detecting beacons specified in the beacons.json file. It's a fairly straightforward file structure to follow - you can add as many/few regions as you like. 
 
-	npm run prod
+The beacons.json template that's included follows our setup - two beacons within a single region (sharing a common UUID). To get started, go ahead and edit the beacons.json file to fit your own setup (regions/beacons).
 
-Now, if you're setting up the full experience, [head over here](https://github.com/ComboStudio/CBRumblr) and finish the rest of the setup for iOS!
+**Note:** If you have multiple regions (read: beacons with multiple UUIDs), you'll need to create a region for every one of those beacons!
+
+### Setting up for your server
+
+To get this working properly, you'll need to set up a server to run on the local network. The server files are available **[over at this repo](https://github.com/ComboStudio/CBRumblrAPI)**. 
+
+Once your server's up and running, grab the IP for the host machine, open **BREConstants.swift** and change the **BREServerRoot** URL to whatever that IP is. 
+
+**And that's it. Happy studio entering!**
 
 ## People who did this
 
