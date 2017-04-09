@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A91811FF1E9A27E00078417A /* BREShadowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91811FE1E9A27E00078417A /* BREShadowImageView.swift */; };
+		A91812021E9A32360078417A /* BRETransitioningViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91812011E9A32360078417A /* BRETransitioningViewControllerDelegate.swift */; };
+		A91812041E9A32A40078417A /* BREChooseATrackPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91812031E9A32A40078417A /* BREChooseATrackPushTransition.swift */; };
+		A91812091E9A38D90078417A /* BREVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91812081E9A38D90078417A /* BREVideoView.swift */; };
+		A918120A1E9A3D110078417A /* audience.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A91812071E9A37030078417A /* audience.mp4 */; };
 		A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */; };
 		A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B61E8BD9BB00D61049 /* Assets.xcassets */; };
 		A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */; };
@@ -31,12 +36,18 @@
 		A9BA758D1E9598C700079838 /* BRETrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */; };
 		A9BA758F1E95A1BC00079838 /* BRENavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */; };
 		A9BA75911E95A33800079838 /* BRESearchSpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA75901E95A33800079838 /* BRESearchSpotifyController.swift */; };
+		A9E363DC1E9A4BBC00944E50 /* BREGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E363DB1E9A4BBC00944E50 /* BREGradientView.swift */; };
 		EA357C9862F70490A6E09AD7 /* Pods_BeaconRangingExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeaconRangingExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.debug.xcconfig"; sourceTree = "<group>"; };
+		A91811FE1E9A27E00078417A /* BREShadowImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREShadowImageView.swift; sourceTree = "<group>"; };
+		A91812011E9A32360078417A /* BRETransitioningViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETransitioningViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A91812031E9A32A40078417A /* BREChooseATrackPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREChooseATrackPushTransition.swift; sourceTree = "<group>"; };
+		A91812071E9A37030078417A /* audience.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = audience.mp4; sourceTree = "<group>"; };
+		A91812081E9A38D90078417A /* BREVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREVideoView.swift; sourceTree = "<group>"; };
 		A92F36AC1E8BD9BB00D61049 /* BeaconRangingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeaconRangingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A92F36B61E8BD9BB00D61049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,6 +74,7 @@
 		A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRETrackTableViewCell.swift; sourceTree = "<group>"; };
 		A9BA758E1E95A1BC00079838 /* BRENavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRENavigationViewController.swift; sourceTree = "<group>"; };
 		A9BA75901E95A33800079838 /* BRESearchSpotifyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BRESearchSpotifyController.swift; sourceTree = "<group>"; };
+		A9E363DB1E9A4BBC00944E50 /* BREGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREGradientView.swift; sourceTree = "<group>"; };
 		EAB787062E16175AE095F1F1 /* Pods-BeaconRangingExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +100,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A91812001E9A31B40078417A /* VC Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				A91812011E9A32360078417A /* BRETransitioningViewControllerDelegate.swift */,
+				A91812031E9A32A40078417A /* BREChooseATrackPushTransition.swift */,
+			);
+			name = "VC Transitions";
+			sourceTree = "<group>";
+		};
+		A91812051E9A36BC0078417A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A91812071E9A37030078417A /* audience.mp4 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		A92F36A31E8BD9BB00D61049 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +138,8 @@
 		A92F36AE1E8BD9BB00D61049 /* BeaconRangingExample */ = {
 			isa = PBXGroup;
 			children = (
+				A91812051E9A36BC0078417A /* Resources */,
+				A91812001E9A31B40078417A /* VC Transitions */,
 				A97672891E96B742004C40B1 /* Models */,
 				A9BA75831E9561B700079838 /* Views */,
 				A9BA75821E955C3700079838 /* Controllers */,
@@ -174,6 +205,9 @@
 				A9BA75881E95979900079838 /* BRESearchField.swift */,
 				A9BA758A1E9598BC00079838 /* BRETrackTableView.swift */,
 				A9BA758C1E9598C700079838 /* BRETrackTableViewCell.swift */,
+				A91811FE1E9A27E00078417A /* BREShadowImageView.swift */,
+				A91812081E9A38D90078417A /* BREVideoView.swift */,
+				A9E363DB1E9A4BBC00944E50 /* BREGradientView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -247,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */,
+				A918120A1E9A3D110078417A /* audience.mp4 in Resources */,
 				A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */,
 				A92F36C51E8BDEE600D61049 /* beacons.json in Resources */,
 			);
@@ -307,7 +342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A91812041E9A32A40078417A /* BREChooseATrackPushTransition.swift in Sources */,
 				A961A1881E954191002AD417 /* BREAPIController.swift in Sources */,
+				A91812021E9A32360078417A /* BRETransitioningViewControllerDelegate.swift in Sources */,
 				A9BA75871E95970700079838 /* BRESelectTrackViewController.swift in Sources */,
 				A9BA758B1E9598BC00079838 /* BRETrackTableView.swift in Sources */,
 				A961A1861E9536D0002AD417 /* BREFileManager.swift in Sources */,
@@ -317,9 +354,12 @@
 				A961A1821E9532DE002AD417 /* BREConstants.swift in Sources */,
 				A9BA75851E9561C800079838 /* BRERoundButton.swift in Sources */,
 				A976728B1E96B756004C40B1 /* BREBeaconRegion.swift in Sources */,
+				A9E363DC1E9A4BBC00944E50 /* BREGradientView.swift in Sources */,
 				A9BA75911E95A33800079838 /* BRESearchSpotifyController.swift in Sources */,
 				A9BA758D1E9598C700079838 /* BRETrackTableViewCell.swift in Sources */,
+				A91811FF1E9A27E00078417A /* BREShadowImageView.swift in Sources */,
 				A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */,
+				A91812091E9A38D90078417A /* BREVideoView.swift in Sources */,
 				A9BA75801E955C3000079838 /* BREHomeViewController.swift in Sources */,
 				A961A1841E953337002AD417 /* BRETrack.swift in Sources */,
 				A9B438DC1E964CC400083B17 /* BREScanningViewController.swift in Sources */,
