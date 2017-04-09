@@ -9,9 +9,11 @@
 import UIKit
 
 class BRESelectTrackViewController: UIViewController {
-
-    private var constraintsNeedUpdating = true
     
+    private var constraintsNeedUpdating = true
+    override var prefersStatusBarHidden: Bool { return true }
+    
+    fileprivate var isSearching = false
     fileprivate var tracks:[BRETrack]?
     
     private lazy var chooseATrackTitleLabel:UILabel = {
@@ -25,10 +27,8 @@ class BRESelectTrackViewController: UIViewController {
         
     }()
     
-    fileprivate lazy var spotifySearchController:BRESearchSpotifyController = BRESearchSpotifyController()
-    
     private lazy var searchField:BRESearchField = {
-       
+        
         let textField = BRESearchField()
         textField.textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class BRESelectTrackViewController: UIViewController {
     }()
     
     fileprivate lazy var tableView:BRETrackTableView = {
-       
+        
         let tableView = BRETrackTableView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,7 +49,7 @@ class BRESelectTrackViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         view.addSubview(chooseATrackTitleLabel)
         view.addSubview(searchField)
         view.addSubview(tableView)
@@ -57,7 +57,15 @@ class BRESelectTrackViewController: UIViewController {
         view.setNeedsUpdateConstraints()
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        searchField.textField.becomeFirstResponder()
+        
+    }
+    
     override func updateViewConstraints() {
         
         if constraintsNeedUpdating {
@@ -78,7 +86,7 @@ class BRESelectTrackViewController: UIViewController {
         super.updateViewConstraints()
         
     }
-
+    
 }
 
 // Spotify
@@ -87,19 +95,24 @@ extension BRESelectTrackViewController {
     
     func searchSpotify(term:String) {
         
-        spotifySearchController.performRequest(request: BRESpotifyRequest.search(term: term, type: BRESearchType.track)) { [weak self] (success:Bool, error:Error?, response:[String : Any]?) in
+        // Show the loading cell
+        
+        self.isSearching = true
+        
+        DispatchQueue.main.async {
             
-            guard error == nil else { self?.searchSpotifyFailed(); return }
-            guard
-                let tracks = response?["tracks"] as? [String:Any],
-                let items = tracks["items"] as? [[String:Any]],
-                items.count > 0
-                else { self?.searchSpotifyFailed(); return }
+            self.tableView.reloadData()
             
-            self?.tracks = items.flatMap { return BRETrack(dictionary: $0) }
+        }
+        
+        BREAPIController.performRequest(request: BREAPIRequest.searchSpotify(query: term)) { [weak self] (success:Bool, error:Error?, dict:[String : Any]?) in
             
+            self?.isSearching = false
+            
+            guard let tracksArray = dict?["tracks"] as? [[String:Any]] else { self?.searchSpotifyFailed(); return }
+            
+            self?.tracks = tracksArray.flatMap { BRETrack(dictionary: $0) }
             self?.searchSpotifyCompleted()
-            
             
         }
         
@@ -107,12 +120,16 @@ extension BRESelectTrackViewController {
     
     func searchSpotifyFailed() {
         
-        print("Failed to search Spotify")
+        DispatchQueue.main.async {
+            
+            self.tableView.reloadData()
+            
+        }
         
     }
     
     func searchSpotifyCompleted() {
-                
+        
         DispatchQueue.main.async {
             
             self.tableView.reloadData()
@@ -143,6 +160,12 @@ extension BRESelectTrackViewController: UITextFieldDelegate {
 
 extension BRESelectTrackViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 80
+        
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return UITableViewAutomaticDimension
@@ -155,7 +178,7 @@ extension BRESelectTrackViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return tracks?.count ?? 0
+        return isSearching == true ? 1 : (tracks?.count ?? 0)
         
     }
     
@@ -167,18 +190,35 @@ extension BRESelectTrackViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let tracks = tracks else { return tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier)! }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier) as! BRETrackTableViewCell
-        let track = tracks[indexPath.row]
-        
-        cell.layout(track: track)
-        
-        return cell
+        if isSearching {
+            
+            // Loading cell
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: BRETrackLoadingTableViewCell.cellIdentifier, for: indexPath) as! BRETrackLoadingTableViewCell
+            return cell
+            
+        }
+            
+        else {
+            
+            guard let tracks = tracks else { return tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier)! }
+            
+            // Regular cell
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: BRETrackTableViewCell.cellIdentifier, for: indexPath) as! BRETrackTableViewCell
+            let track = tracks[indexPath.row]
+            
+            cell.layout(track: track)
+            
+            return cell
+            
+        }
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard isSearching == false else { return }
         
         guard let tracks = tracks else { return }
         

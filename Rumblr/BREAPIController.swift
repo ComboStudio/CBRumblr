@@ -16,13 +16,15 @@ enum BREAPIError:Error {
 
 enum BREAPIRequest {
     
+    case searchSpotify(query:String)
     case requestSpotifyTrack(trackId:String)
     
     var path:String {
         
         switch self {
             
-        case .requestSpotifyTrack(let trackId): return "/play/spotify/\(trackId)"
+        case .searchSpotify(let query): return "/spotify/search/\(query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!)"
+        case .requestSpotifyTrack(let trackId): return "/spotify/play/\(trackId.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!)"
             
         }
         
@@ -33,7 +35,8 @@ enum BREAPIRequest {
         switch self {
             
         case .requestSpotifyTrack(_): return "POST"
-            
+        default: return "GET"
+        
         }
         
     }
@@ -49,12 +52,7 @@ class BREAPIController {
         urlRequest.httpMethod = request.method
 
         let task = URLSession.shared.dataTask(with: urlRequest) { (data:Data?, response:URLResponse?, error:Error?) in
-            
-            print(response)
-            print(error)
-            
-            print("Firing for URL: " + url.absoluteString)
-            
+                        
             guard let data = data else { completionBlock(false, BREAPIError.unknownError, nil); return }
             
             do {

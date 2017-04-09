@@ -14,6 +14,14 @@ class BRERoundButton: UIButton {
         
         super.init(frame: .zero)
     
+        layer.cornerRadius = 5.0
+        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 1.0
+        
+        titleLabel?.font = UIFont.fontBold12
+        setTitleColor(.white, for: .normal)
+        backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        
     }
     
     // MARK: Unrequired Functions

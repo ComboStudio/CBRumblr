@@ -8,11 +8,19 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
-protocol BRELocationManagerDelegate {
+@objc protocol BRELocationManagerDelegate:class {
     
-    func beaconFound(beacon:BREBeacon)
-    func beaconNotFound()
+    @objc optional func beaconDiscoveredNewBeacon(beacon:BREBeacon)
+    @objc optional func beaconOutOfRange(beacon:BREBeacon)
+    
+}
+
+enum BRELocationManagerBeaconMode {
+    
+    case ranging
+    case monitoring
     
 }
 
@@ -20,10 +28,11 @@ class BRELocationManager: NSObject {
     
     static var shared = BRELocationManager()
     
-    var delegate:BRELocationManagerDelegate?
+    weak var delegate:BRELocationManagerDelegate?
     
     fileprivate var regionsArray:[BREBeaconRegion]?
     fileprivate var beaconsInRange:[BREBeacon] = []
+    fileprivate var mode:BRELocationManagerBeaconMode = .ranging
     
     lazy var locationManager:CLLocationManager = {
         
@@ -34,45 +43,94 @@ class BRELocationManager: NSObject {
         
     }()
     
-    func beginMonitoring() {
+    override init() {
         
-        let url = Bundle.main.url(forResource: "beacons", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        let dictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
-        let _regionsArray = dictionary["regions"] as! [[String:Any]]
-        let regionsArray = _regionsArray.flatMap { return BREBeaconRegion(dictionary: $0) }
+        guard
+            let url = Bundle.main.url(forResource: "beacons", withExtension: "json"),
+            let data = try? Data(contentsOf: url),
+            let _dictionary = try? JSONSerialization.jsonObject(with: data, options: []),
+            let dictionary = _dictionary as? [String:Any],
+            let regionsArray = dictionary["regions"] as? [[String:Any]] else { return }
         
-        self.regionsArray = regionsArray
+        self.regionsArray = regionsArray.flatMap { return BREBeaconRegion(dictionary: $0) }
         
     }
     
-    fileprivate func monitorRegions() {
+    func beginRanging() {
         
         // TOOD: Check if permission has already been granted. Don't run this if it has.
         
+        mode = .ranging
         locationManager.requestAlwaysAuthorization()
         
-        regionsArray?.forEach({ (region:BREBeaconRegion) in
+    }
+    
+    func beginMonitoring() {
         
-        locationManager.startRangingBeacons(in: region.region)
+        mode = .monitoring
+        locationManager.requestAlwaysAuthorization()
+        
+    }
+    
+    func stopRanging() {
+        
+        regionsArray?.forEach({ (region:BREBeaconRegion) in
+            
+            locationManager.stopRangingBeacons(in: region.region)
             
         })
         
     }
     
-    fileprivate func stopMonitoring() {
+    func stopMonitoring() {
         
-        locationManager.monitoredRegions.forEach { (region:CLRegion) in
+        regionsArray?.forEach({ (region:BREBeaconRegion) in
             
-            locationManager.stopMonitoring(for: region)
+            locationManager.stopMonitoring(for: region.region)
             
-        }
+        })
         
     }
+    
+    fileprivate func rangeRegions() {
+        
+        regionsArray?.forEach({ (region:BREBeaconRegion) in
+            
+            locationManager.startRangingBeacons(in: region.region)
+            
+        })
+        
+    }
+    
+    fileprivate func monitorRegions() {
+        
+        regionsArray?.forEach({ (region:BREBeaconRegion) in
+            
+            print("Began monitoring for region: \(region.identifier)")
+            
+            locationManager.startMonitoring(for: region.region)
+            
+        })
+        
+    }
+    
     
 }
 
 extension BRELocationManager: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        guard status == .authorizedAlways else { print("Error occured when authorizing."); return }
+        
+        switch mode {
+            
+        case .monitoring: monitorRegions()
+        case .ranging: rangeRegions()
+            
+        }
+        
+    }
     
     func locationManager(_ manager: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error) {
         
@@ -83,9 +141,11 @@ extension BRELocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
+        print("Ranging...")
+        
         guard let regionsArray = regionsArray else { return }
         
-        // First, we range. 
+        // First, we range.
         
         // When you range multiple beacons at a time, this function is called once a second for _every beacon_ you range. That means if you're ranging four beacons at once, this will call four times. If you're in range of one of them, ONE of those callbacks will have a discovered beacon. The other three will return empty arrays.
         
@@ -104,6 +164,10 @@ extension BRELocationManager: CLLocationManagerDelegate {
             
             let signalStrength = beacon.rssi
             
+            // Check that we actually have a decent RSSI - iBeacons have a weird tendency of just sending an RSSI of 0 whenever the signal isn't strong enough.
+            
+            guard signalStrength < 0 else { return }
+            
             let beaconObj:BREBeacon = {
                 
                 // We can comfortably force-unwrap this because, unless we pull beacons through other methods other than the .json supplied, we won't have the information for any other beacon information that would be pulled up whilst scanning.
@@ -112,7 +176,7 @@ extension BRELocationManager: CLLocationManagerDelegate {
                 return beaconsArray[idx!]
                 
             }()
-
+            
             // For the future, we'll need to know if there's a beacon in range.
             
             let inRangeIdx = beaconsInRange.index { $0.minor == beaconObj.minor }
@@ -130,20 +194,20 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     print("New beacon began being monitored: " + beaconObj.title)
                     
                     beaconsInRange.append(beaconObj)
+                    delegate?.beaconDiscoveredNewBeacon?(beacon: beaconObj)
                     
-                   
                 }
-                
+                    
                 else {
                     
                     // Ah, looks like it is.
-
+                    
                     // Keep calm, carry on.
                     
                 }
                 
             }
-            
+                
             else {
                 
                 // Beacon isn't in range. We can ignore this - unless, of course, it was already in the beacons array?
@@ -152,41 +216,14 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     
                     print("Beacon's no longer being monitored: " + beaconObj.title)
                     
-                    // If it was in the beacon array, we can assume that we've just left the area.
-                    
-                    let regionIdx = locationManager.monitoredRegions.index(where: { (region:CLRegion) -> Bool in
-                        
-                        guard
-                            let region = region as? CLBeaconRegion,
-                            let regionMinor = region.minor?.intValue
-                        else { return false }
-                        
-                        return regionMinor == beaconObj.minor
-                        
-                    })
-                    
                     beaconsInRange.remove(at: inRangeIdx!)
-                    
-                    if let idx = regionIdx {
-                        
-                        locationManager.stopMonitoring(for: locationManager.monitoredRegions[idx])
-                        
-                    }
+                    delegate?.beaconOutOfRange?(beacon: beaconObj)
                     
                 }
                 
             }
             
         }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
-        // Right.
-        
-//        delegate?.beaconFound(beacon: beacon)
-//        stopMonitoring()
         
     }
     
@@ -200,17 +237,14 @@ extension BRELocationManager: CLLocationManagerDelegate {
         
         // Finally, didDetermineState can be "forced" by using the locationManager.requestStateFor() method. That means you can request an update and run whatever logic's in here at (roughly) any given time (it's async), which is pretty gnarly.
         
-//        guard let beacon = getBeaconForRegion(region: region) else { print("Couldn't get beacon."); return }
-//        
-//        // Check if the user's INSIDE the region, not outside...
-//        
-//        guard state == CLRegionState.inside else { print("Not inside."); return }
-//        
-//        // Alright. Time to make our entrance.
-//        
-//        delegate?.beaconFound(beacon: beacon)
-//        stopMonitoring()
-//        
+        // Check if the user's INSIDE the region, not outside...
+        
+        guard state == CLRegionState.inside else { print("Not inside."); return }
+        
+        // Alright. Time to get the user to open the app and make their entrance.
+        
+        BREPushNotificationController.createPushNotification(message: "Ready to make your big entrance?")
+        
     }
     
 }

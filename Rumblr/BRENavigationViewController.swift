@@ -12,6 +12,8 @@ class BRENavigationViewController: UINavigationController {
 
     private var constraintsNeedUpdating = true
     
+    private var transitionController = BRETransitioningViewControllerDelegate()
+    
     private lazy var backgroundImageView:UIImageView = {
         
         let imageView = UIImageView()
@@ -26,6 +28,11 @@ class BRENavigationViewController: UINavigationController {
         super.viewDidLoad()
 
         isNavigationBarHidden = true
+        interactivePopGestureRecognizer?.delegate = nil
+        interactivePopGestureRecognizer?.isEnabled = true
+        
+        delegate = transitionController
+        transitioningDelegate = transitionController
         
         view.insertSubview(backgroundImageView, at: 0)
         

@@ -16,9 +16,9 @@ class BRETrackTableViewCell: UITableViewCell {
     private var constraintsNeedUpdating = true
     private var track:BRETrack?
     
-    private var albumArtImageView:UIImageView = {
+    private var albumArtImageView:BREImageView = {
        
-        let imageView = UIImageView()
+        let imageView = BREImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
         
@@ -36,6 +36,7 @@ class BRETrackTableViewCell: UITableViewCell {
        
         let titleLabel = UILabel()
         titleLabel.font = UIFont.fontLight14
+        titleLabel.numberOfLines = 0
         titleLabel.text = "Track Name"
         titleLabel.textColor = UIColor.white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +48,7 @@ class BRETrackTableViewCell: UITableViewCell {
         
         let titleLabel = UILabel()
         titleLabel.font = UIFont.fontLight14
+        titleLabel.numberOfLines = 0
         titleLabel.text = "Artist Name"
         titleLabel.textColor = UIColor.white.withAlphaComponent(0.6)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +69,6 @@ class BRETrackTableViewCell: UITableViewCell {
         contentView.addSubview(textContainer)
         contentView.addSubview(albumArtImageView)
         
-        contentView.addSubview(textContainer)
-        
         setNeedsUpdateConstraints()
         
     }
@@ -78,17 +78,10 @@ class BRETrackTableViewCell: UITableViewCell {
         
         self.track = track
         
-        DispatchQueue.main.async {
-        
         self.titleLabel.text = track.title
         self.subtitleLabel.text = track.artist
-        self.albumArtImageView.sd_setImage(with: track.artworkURL) { (image:UIImage?, err:Error?, cacheType:SDImageCacheType, url:URL?) in
-            
-            print("Finished adding!")
-            
-        }
-            
-        }
+        self.albumArtImageView.set(url: track.artworkURL)
+        
         
     }
 
@@ -101,13 +94,13 @@ class BRETrackTableViewCell: UITableViewCell {
             
             textContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|", options: .directionLeadingToTrailing, metrics: metricsDict, views: viewsDict))
             textContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[subtitleLabel]|", options: .directionLeadingToTrailing, metrics: metricsDict, views: viewsDict))
-            textContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-5-[subtitleLabel]|", options: .directionLeadingToTrailing, metrics: metricsDict, views: viewsDict))
+            textContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-5-[subtitleLabel]|", options: [], metrics: metricsDict, views: viewsDict))
             
             contentView.addConstraint(NSLayoutConstraint(item: albumArtImageView, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 0.13, constant: 0))
             contentView.addConstraint(NSLayoutConstraint(item: albumArtImageView, attribute: .height, relatedBy: .equal, toItem: self.albumArtImageView, attribute: .width, multiplier: 1.0, constant: 0))
             contentView.addConstraint(NSLayoutConstraint(item: albumArtImageView, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1.0, constant: 0))
             
-            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[textContainer]|", options: [], metrics: metricsDict, views: viewsDict))
+            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-yEdgePadding-[textContainer]-yEdgePadding-|", options: [], metrics: metricsDict, views: viewsDict))
             contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-xEdgePadding-[albumArtImageView]-13-[textContainer]-xEdgePadding-|", options: .directionLeadingToTrailing, metrics: metricsDict, views: viewsDict))
             
             constraintsNeedUpdating = false

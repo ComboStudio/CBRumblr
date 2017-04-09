@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BeaconRangingExample.xcodeproj">
+      location = "group:/Users/sampiggott/Documents/Code/CBRumblr/Rumblr.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

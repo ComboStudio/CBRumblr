@@ -15,7 +15,9 @@ class BRETrackTableView: UITableView {
         super.init(frame: .zero, style: UITableViewStyle.plain)
         
         register(BRETrackTableViewCell.self, forCellReuseIdentifier: BRETrackTableViewCell.cellIdentifier)
+        register(BRETrackLoadingTableViewCell.self, forCellReuseIdentifier: BRETrackLoadingTableViewCell.cellIdentifier)
         
+        keyboardDismissMode = .onDrag
         backgroundColor = .clear
         separatorStyle = .none
         

@@ -11,6 +11,14 @@ import UserNotifications
 
 class BREPushNotificationController: NSObject {
 
+    class func requestPermissions() {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (success:Bool, error:Error?) in
+            
+        }
+        
+    }
+    
     class func createPushNotification(message:String) {
         
         let content = UNMutableNotificationContent()

@@ -17,7 +17,9 @@ class BREBeaconRegion: NSObject {
     
     var region:CLBeaconRegion {
         
-        return CLBeaconRegion(proximityUUID: uuid, identifier: identifier)
+        let region = CLBeaconRegion(proximityUUID: uuid, identifier: identifier)
+        region.notifyEntryStateOnDisplay = true
+        return region
         
     }
     

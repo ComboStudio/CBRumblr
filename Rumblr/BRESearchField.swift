@@ -17,6 +17,7 @@ class BRESearchField: UIView {
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.font = UIFont.fontRegular14
+        textField.returnKeyType = .search
         textField.attributedPlaceholder = NSAttributedString(string: "Enter a song name...", attributes: [NSFontAttributeName:UIFont.fontLight14, NSForegroundColorAttributeName:UIColor.white.withAlphaComponent(0.5)])
         textField.textColor = UIColor.white
         textField.isUserInteractionEnabled = true
