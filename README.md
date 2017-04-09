@@ -20,7 +20,7 @@ Once the associated Pods are installed, you're going to want to make a couple of
 
 * **The server needs to be running on the same network as the client device AND the Sonos for this to work!** Yeah, it's far from ideal, but the Sonos bits require a bit of tunnel-y magic I haven't got round to trying yet. Would love to see any implementation of this, however!
 
-### Setting up for your own Beacons
+### 1. Setting up for your own Beacons
 
 The app works by detecting beacons specified in the beacons.json file. It's a fairly straightforward file structure to follow - you can add as many/few regions as you like. 
 
@@ -28,7 +28,7 @@ The beacons.json template that's included follows our setup - two beacons within
 
 **Note:** If you have multiple regions (read: beacons with multiple UUIDs), you'll need to create a region for every one of those beacons!
 
-### Setting up for your server
+### 2. Setting up for your server
 
 To get this working properly, you'll need to set up a server to run on the local network. The server files are available **[over at this repo](https://github.com/ComboStudio/CBRumblrAPI)**. 
 
