@@ -11,6 +11,18 @@ import UIKit
 enum BREAPIError:Error {
     
     case unknownError
+    case serverError(description:String)
+    
+    var description:String {
+        
+        switch self {
+            
+        case .unknownError: return "Unknown error occured."
+        case .serverError(let description): return description
+            
+        }
+        
+    }
     
 }
 
@@ -58,7 +70,9 @@ class BREAPIController {
             do {
                 
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
-                completionBlock(true, nil, json)
+                let errorDescription = json?["error"] as? String
+                
+                completionBlock(errorDescription == nil, error != nil ? BREAPIError.serverError(description: errorDescription!) : nil, json)
                 
             } catch (_) {
              

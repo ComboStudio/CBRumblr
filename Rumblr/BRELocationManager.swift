@@ -26,8 +26,6 @@ enum BRELocationManagerBeaconMode {
 
 class BRELocationManager: NSObject {
     
-    static var shared = BRELocationManager()
-    
     weak var delegate:BRELocationManagerDelegate?
     
     fileprivate var regionsArray:[BREBeaconRegion]?
@@ -57,9 +55,7 @@ class BRELocationManager: NSObject {
     }
     
     func beginRanging() {
-        
-        // TOOD: Check if permission has already been granted. Don't run this if it has.
-        
+                
         mode = .ranging
         locationManager.requestAlwaysAuthorization()
         
@@ -106,8 +102,6 @@ class BRELocationManager: NSObject {
         
         regionsArray?.forEach({ (region:BREBeaconRegion) in
             
-            print("Began monitoring for region: \(region.identifier)")
-            
             locationManager.startMonitoring(for: region.region)
             
         })
@@ -147,11 +141,13 @@ extension BRELocationManager: CLLocationManagerDelegate {
         
         // First, we range.
         
-        // When you range multiple beacons at a time, this function is called once a second for _every beacon_ you range. That means if you're ranging four beacons at once, this will call four times. If you're in range of one of them, ONE of those callbacks will have a discovered beacon. The other three will return empty arrays.
+        // When you range multiple beacons at a time, this function is called once a second for _every beacon_ you range. That means if you're ranging four beacon regions at once, this will call four times. If you're in range of one of them, ONE of those callbacks will have a discovered beacon. The other three will return empty arrays.
+        
+        // The way we've handled this is by dividing our beacons into regions. Each region shares the same UUID, they just have different Minor values to help us identify them. You can head over to beacons.json if you're confused by this - the structure over there should make things fairly clear.
         
         // The clue for what this does is in the name - it helps us understand how close each of the beacon is from the device, and comes back to us periodically to let us know which beacons it's found in the surrounding area in the form of this delegate method. Neat, right?
         
-        // What we can do with this information is understand how close they are, and if the beacon's close enough, we can startMonitoring for it. We'll go into startMonitoring later - let's just get our heads around the clusterfuck that is ranging, first.
+        // We're going to use the ranging system to identify how close we are to the beacons in our list. If we're close enough to one that's set up to trigger (see the shouldTrigger property in the BREBeacon model), and we're ready to make our entrance, it'll tell the user that they're ready to go!
         
         // Find region first
         
@@ -168,20 +164,20 @@ extension BRELocationManager: CLLocationManagerDelegate {
             
             guard signalStrength < 0 else { return }
             
+            // Identify which beacon has been ranged by the device. Doing this will help us understand whether we should or shouldn't trigger starting the music (again, see the shouldTrigger property).
+            
             let beaconObj:BREBeacon = {
-                
-                // We can comfortably force-unwrap this because, unless we pull beacons through other methods other than the .json supplied, we won't have the information for any other beacon information that would be pulled up whilst scanning.
                 
                 let idx = beaconsArray.index { beacon.minor.intValue == $0.minor }
                 return beaconsArray[idx!]
                 
             }()
             
-            // For the future, we'll need to know if there's a beacon in range.
+            // Right, bit of a confusing step here. We're going to measure the strength of the signal offered by the beacon (.rssi), and ignore it until it's strong enough.
             
             let inRangeIdx = beaconsInRange.index { $0.minor == beaconObj.minor }
             
-            // Right, we've found a beacon. Is it within the programmed range we've specified for it to trigger?
+            // Right, so we've found a beacon! Is it within the programmed range we've specified for it to trigger?
             
             if beaconObj.isInRange(rssi: signalStrength) {
                 
@@ -191,8 +187,6 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     
                     // It isn't. Let's add it to the array and start monitoring it!
                     
-                    print("New beacon began being monitored: " + beaconObj.title)
-                    
                     beaconsInRange.append(beaconObj)
                     delegate?.beaconDiscoveredNewBeacon?(beacon: beaconObj)
                     
@@ -200,7 +194,7 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     
                 else {
                     
-                    // Ah, looks like it is.
+                    // Ah, looks like it was already in the array. This method gets called over and over until it's told to stop ranging, so we can just ignore this. This time, we've stayed within range.
                     
                     // Keep calm, carry on.
                     
@@ -210,11 +204,11 @@ extension BRELocationManager: CLLocationManagerDelegate {
                 
             else {
                 
-                // Beacon isn't in range. We can ignore this - unless, of course, it was already in the beacons array?
+                // Beacon isn't in range. We can ignore this - unless, of course, it was already in the beacons array? If it was, that means we've just moved out of signal, so let's check if it's in range using that handy index we calculated earlier...
                 
                 if inRangeIdx != nil {
                     
-                    print("Beacon's no longer being monitored: " + beaconObj.title)
+                    // Yup, we've just stepped out of range. Let's remove it and alert the delegate.
                     
                     beaconsInRange.remove(at: inRangeIdx!)
                     delegate?.beaconOutOfRange?(beacon: beaconObj)
@@ -229,19 +223,21 @@ extension BRELocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         
-        // From what I understand, didDetermineState is a bit of a pinging mechanism.
+        // Right, didDetermineState is a bit of a pinging mechanism.
         
         // For example, if you entered a region, closed the application, then re-opened it, you wouldn't expect to "enter" the region again - because you didn't enter, you just stayed in the same place. didDetermineState will trigger during every "transition" period (i.e. left/re-entered a zone).
         
         // It's also worth mentioning that didDetermineState will be called whilst the app isn't even in memory if the region's notifyEntryOnDisplay is enabled. By default, this is false - but for this demonstration, I've enabled it for every monitored region.
         
-        // Finally, didDetermineState can be "forced" by using the locationManager.requestStateFor() method. That means you can request an update and run whatever logic's in here at (roughly) any given time (it's async), which is pretty gnarly.
+        // When notifyEntryOnDisplay is enabled for a monitored region, when the device WAKES (not even unlocked!), the device will do a quick pass for any beacons in range. If it finds one, it'll wake the app and fire this method. Using this, we can fire off a push notification when the user's within range of one of our beacons to get them to make their entrance!
+        
+        // Final note - didDetermineState can be "forced" by using the locationManager.requestStateFor() method. That means you can request an update and run whatever logic's in here at (roughly) any given time (it's async), which is pretty gnarly.
         
         // Check if the user's INSIDE the region, not outside...
         
         guard state == CLRegionState.inside else { print("Not inside."); return }
         
-        // Alright. Time to get the user to open the app and make their entrance.
+        // Alright, we're in range. Time to get the user to open the app and make their entrance.
         
         BREPushNotificationController.createPushNotification(message: "Ready to make your big entrance?")
         

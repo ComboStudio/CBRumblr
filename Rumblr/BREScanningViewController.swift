@@ -277,12 +277,19 @@ extension BREScanningViewController: BRELocationManagerDelegate {
         
         // It does! We're good to go.
         
-        transitionTo(state: .success)
         locationManager.stopRanging()
         
         // Make the entrance!
         
-        BREEntranceController.shared.makeEntrance()
+        BREEntranceController.shared.makeEntrance { [weak self] (success:Bool) in
+            
+            DispatchQueue.main.async {
+            
+            self?.transitionTo(state: success == true ? .success : .failed)
+            
+            }
+            
+        }
         
     }
     

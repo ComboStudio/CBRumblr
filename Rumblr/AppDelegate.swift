@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         // First launch - get monitoring those beacons for the future.
         
-        BRELocationManager.shared.beginMonitoring()
         BREPushNotificationController.requestPermissions()
         
         return true

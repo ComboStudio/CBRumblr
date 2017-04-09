@@ -40,7 +40,7 @@ class BREEntranceController: NSObject {
         
     }
     
-    func makeEntrance() {
+    func makeEntrance(completionBlock:@escaping (_ success:Bool) -> Void) {
         
         // Should this fire? Check that we're armed before we actually start playing tracks like crazy...
         
@@ -63,6 +63,8 @@ class BREEntranceController: NSObject {
                 // Alright! Everything went as expected, the tune should be playing over the Sonos! We've had our fun. Disarm, otherwise this'll keep going off like crazy.
                 
             }
+            
+            completionBlock(success)
             
         }
         
