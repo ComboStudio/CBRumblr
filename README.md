@@ -16,9 +16,11 @@ First, make sure Cocoapods is installed, navigate to the directory in the Termin
 
 Once the associated Pods are installed, you're going to want to make a couple of file adjustments.
 
-## A note before setting up
+## A couple of notes before setting up
 
 * **The server needs to be running on the same network as the client device AND the Sonos for this to work!** Yeah, it's far from ideal, but the Sonos bits require a bit of tunnel-y magic I haven't got round to trying yet. Would love to see any implementation of this, however!
+
+* For more information about the inner workings of the beacons, I've written some comments in the **BRELocationManager.swift** file. If you're keen to learn how to range and monitor beacons, I'd suggest flicking through some of my waffle over there.
 
 ### 1. Setting up for your own Beacons
 
