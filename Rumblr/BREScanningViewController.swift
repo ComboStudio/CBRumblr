@@ -11,7 +11,7 @@ import UIKit
 enum BREScanningCompletionState {
     
     case success
-    case failed
+    case failed(error:String?)
     
     var titleText:String {
         
@@ -29,7 +29,7 @@ enum BREScanningCompletionState {
         switch self {
             
         case .success: return "Music's cued up. They're ready for you!"
-        case .failed: return "Looks like you're not close enough to the entrance right now."
+        case .failed(let error): return error ?? "Looks like you're not close enough to the entrance right now."
             
         }
         
@@ -60,7 +60,6 @@ class BREScanningViewController: UIViewController {
         return locationManager
         
     }()
-    
 
     private var closeButton:UIButton = {
        
@@ -180,8 +179,8 @@ class BREScanningViewController: UIViewController {
         
         let fileURLPath = Bundle.main.path(forResource: "audience", ofType: "mp4")!
         backgroundVideoView.set(url: URL(fileURLWithPath: fileURLPath))
-        
-        locationManager.beginRanging()
+                
+        locationManager.beginMonitoring()
         
     }
     
@@ -261,7 +260,7 @@ class BREScanningViewController: UIViewController {
     func tappedCloseButton() {
         
         dismiss(animated: true, completion: nil)
-        locationManager.stopRanging()
+        locationManager.stopMonitoring()
         
     }
     
@@ -277,7 +276,7 @@ extension BREScanningViewController: BRELocationManagerDelegate {
         
         // It does! We're good to go.
         
-        locationManager.stopRanging()
+        locationManager.stopMonitoring()
         
         // Make the entrance!
         
@@ -285,11 +284,25 @@ extension BREScanningViewController: BRELocationManagerDelegate {
             
             DispatchQueue.main.async {
             
-            self?.transitionTo(state: success == true ? .success : .failed)
+                self?.transitionTo(state: success == true ? .success : .failed(error: nil))
             
             }
             
         }
+        
+    }
+    
+    func beaconOutOfRange(beacon: BREBeacon) {
+        
+        // This delegate method's simply for detecting if we leave the range of a beacon.
+        
+    }
+    
+    func beaconScanningFailed(error: BRELocationManagerError) {
+        
+        locationManager.stopMonitoring()
+        
+        transitionTo(state: .failed(error: error.description))
         
     }
     

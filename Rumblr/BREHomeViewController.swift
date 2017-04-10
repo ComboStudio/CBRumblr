@@ -10,12 +10,12 @@ import UIKit
 import SDWebImage
 
 class BREHomeViewController: UIViewController {
-
+    
     private var constraintsNeedUpdating = true
     override var prefersStatusBarHidden: Bool { return true }
     
     private lazy var entranceTrackTitleLabel:UILabel = {
-       
+        
         let label = UILabel()
         label.text = "Your Entrance Music".uppercased()
         label.font = UIFont.fontBold12
@@ -26,7 +26,7 @@ class BREHomeViewController: UIViewController {
     }()
     
     private lazy var albumArtImageView:BREImageView = {
-       
+        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedAlbumArtwork))
         
         let imageView = BREImageView()
@@ -45,7 +45,7 @@ class BREHomeViewController: UIViewController {
     }()
     
     private lazy var albumArtGradientView:BREGradientView = {
-       
+        
         let gradientView = BREGradientView(topColour: UIColor.black.withAlphaComponent(0.0), bottomColour: UIColor.black.withAlphaComponent(1.0))
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         return gradientView
@@ -53,7 +53,7 @@ class BREHomeViewController: UIViewController {
     }()
     
     private lazy var albumArtTextLabel:UILabel = {
-       
+        
         let label = UILabel()
         label.text = "Change your entrance music"
         label.textAlignment = .center
@@ -98,7 +98,7 @@ class BREHomeViewController: UIViewController {
     }()
     
     private lazy var separatorLine:UIView = {
-       
+        
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -107,16 +107,16 @@ class BREHomeViewController: UIViewController {
     }()
     
     private lazy var buttonContainer:UIView = {
-       
+        
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
         
     }()
-
+    
     
     private lazy var buttonReady:BRERoundButton = {
-       
+        
         let button = BRERoundButton()
         button.addTarget(self, action: #selector(BREHomeViewController.tappedReadyButton), for: .touchUpInside)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -134,7 +134,7 @@ class BREHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         trackTextContainer.addSubview(trackTitleLabel)
         trackTextContainer.addSubview(trackSubtitleLabel)
         
@@ -165,7 +165,7 @@ class BREHomeViewController: UIViewController {
         animateIn()
         
     }
-
+    
     func layoutWithActiveTrack() {
         
         guard let track = BREEntranceController.shared.activeTrack else { return }
@@ -283,7 +283,7 @@ class BREHomeViewController: UIViewController {
     func tappedReadyButton() {
         
         navigationController?.present(BREScanningViewController(), animated: true, completion: nil)
-        
+    
     }
-
+    
 }

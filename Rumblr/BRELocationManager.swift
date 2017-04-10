@@ -10,17 +10,27 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-@objc protocol BRELocationManagerDelegate:class {
+enum BRELocationManagerError:Error {
     
-    @objc optional func beaconDiscoveredNewBeacon(beacon:BREBeacon)
-    @objc optional func beaconOutOfRange(beacon:BREBeacon)
+    case bluetoothIsDisabled
+    
+    var description:String {
+        
+        switch self {
+            
+        case .bluetoothIsDisabled: return "Bluetooth is currently disabled. Enable it on your device and try again!"
+            
+        }
+        
+    }
     
 }
 
-enum BRELocationManagerBeaconMode {
+protocol BRELocationManagerDelegate:class {
     
-    case ranging
-    case monitoring
+    func beaconDiscoveredNewBeacon(beacon:BREBeacon)
+    func beaconScanningFailed(error:BRELocationManagerError)
+    func beaconOutOfRange(beacon:BREBeacon)
     
 }
 
@@ -30,9 +40,15 @@ class BRELocationManager: NSObject {
     
     fileprivate var regionsArray:[BREBeaconRegion]?
     fileprivate var beaconsInRange:[BREBeacon] = []
-    fileprivate var mode:BRELocationManagerBeaconMode = .ranging
     
-    lazy var locationManager:CLLocationManager = {
+    fileprivate lazy var bluetoothController:BREBluetoothController = {
+        
+        let controller = BREBluetoothController()
+        return controller
+        
+    }()
+    
+    lazy fileprivate var locationManager:CLLocationManager = {
         
         let locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -54,27 +70,14 @@ class BRELocationManager: NSObject {
         
     }
     
-    func beginRanging() {
-                
-        mode = .ranging
-        locationManager.requestAlwaysAuthorization()
-        
-    }
-    
     func beginMonitoring() {
         
-        mode = .monitoring
-        locationManager.requestAlwaysAuthorization()
-        
-    }
-    
-    func stopRanging() {
-        
-        regionsArray?.forEach({ (region:BREBeaconRegion) in
+        bluetoothController.checkIfBluetoothIsEnabled { [weak self] (isEnabled:Bool) in
             
-            locationManager.stopRangingBeacons(in: region.region)
+            if isEnabled { self?.locationManager.requestAlwaysAuthorization() }
+            else { self?.delegate?.beaconScanningFailed(error: BRELocationManagerError.bluetoothIsDisabled) }
             
-        })
+        }
         
     }
     
@@ -82,17 +85,8 @@ class BRELocationManager: NSObject {
         
         regionsArray?.forEach({ (region:BREBeaconRegion) in
             
+            locationManager.stopRangingBeacons(in: region.region)
             locationManager.stopMonitoring(for: region.region)
-            
-        })
-        
-    }
-    
-    fileprivate func rangeRegions() {
-        
-        regionsArray?.forEach({ (region:BREBeaconRegion) in
-            
-            locationManager.startRangingBeacons(in: region.region)
             
         })
         
@@ -102,6 +96,7 @@ class BRELocationManager: NSObject {
         
         regionsArray?.forEach({ (region:BREBeaconRegion) in
             
+            locationManager.startRangingBeacons(in: region.region)
             locationManager.startMonitoring(for: region.region)
             
         })
@@ -117,12 +112,7 @@ extension BRELocationManager: CLLocationManagerDelegate {
         
         guard status == .authorizedAlways else { print("Error occured when authorizing."); return }
         
-        switch mode {
-            
-        case .monitoring: monitorRegions()
-        case .ranging: rangeRegions()
-            
-        }
+        monitorRegions()
         
     }
     
@@ -188,7 +178,7 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     // It isn't. Let's add it to the array and start monitoring it!
                     
                     beaconsInRange.append(beaconObj)
-                    delegate?.beaconDiscoveredNewBeacon?(beacon: beaconObj)
+                    delegate?.beaconDiscoveredNewBeacon(beacon: beaconObj)
                     
                 }
                     
@@ -211,7 +201,7 @@ extension BRELocationManager: CLLocationManagerDelegate {
                     // Yup, we've just stepped out of range. Let's remove it and alert the delegate.
                     
                     beaconsInRange.remove(at: inRangeIdx!)
-                    delegate?.beaconOutOfRange?(beacon: beaconObj)
+                    delegate?.beaconOutOfRange(beacon: beaconObj)
                     
                 }
                 

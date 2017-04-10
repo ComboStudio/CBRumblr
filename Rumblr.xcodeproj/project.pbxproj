@@ -12,6 +12,7 @@
 		A91812041E9A32A40078417A /* BREChooseATrackPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91812031E9A32A40078417A /* BREChooseATrackPushTransition.swift */; };
 		A91812091E9A38D90078417A /* BREVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91812081E9A38D90078417A /* BREVideoView.swift */; };
 		A918120A1E9A3D110078417A /* audience.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A91812071E9A37030078417A /* audience.mp4 */; };
+		A92B722E1E9B93E200C9C45B /* BREBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92B722D1E9B93E200C9C45B /* BREBluetoothController.swift */; };
 		A92F36B01E8BD9BB00D61049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */; };
 		A92F36B71E8BD9BB00D61049 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B61E8BD9BB00D61049 /* Assets.xcassets */; };
 		A92F36BA1E8BD9BB00D61049 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92F36B81E8BD9BB00D61049 /* LaunchScreen.storyboard */; };
@@ -50,6 +51,7 @@
 		A91812031E9A32A40078417A /* BREChooseATrackPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREChooseATrackPushTransition.swift; sourceTree = "<group>"; };
 		A91812071E9A37030078417A /* audience.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = audience.mp4; sourceTree = "<group>"; };
 		A91812081E9A38D90078417A /* BREVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREVideoView.swift; sourceTree = "<group>"; };
+		A92B722D1E9B93E200C9C45B /* BREBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREBluetoothController.swift; sourceTree = "<group>"; };
 		A92F36AC1E8BD9BB00D61049 /* Rumblr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumblr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92F36AF1E8BD9BB00D61049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A92F36B61E8BD9BB00D61049 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				A961A17D1E952FD8002AD417 /* BREPushNotificationController.swift */,
 				A961A17F1E95302E002AD417 /* BRELocationManager.swift */,
 				A961A1871E954191002AD417 /* BREAPIController.swift */,
+				A92B722D1E9B93E200C9C45B /* BREBluetoothController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				A961A17E1E952FD8002AD417 /* BREPushNotificationController.swift in Sources */,
 				A961A17C1E952FB1002AD417 /* BREBeacon.swift in Sources */,
 				A9BA758F1E95A1BC00079838 /* BRENavigationViewController.swift in Sources */,
+				A92B722E1E9B93E200C9C45B /* BREBluetoothController.swift in Sources */,
 				A961A1801E95302E002AD417 /* BRELocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,11 +502,13 @@
 			baseConfigurationReference = C3D14338DAE65A09A0EF908B /* Pods-Rumblr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JAA59HR27W;
 				INFOPLIST_FILE = "$(SRCROOT)/Rumblr/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fm.combo.Rumblr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -512,11 +518,13 @@
 			baseConfigurationReference = B4D0FE8FB45CB9153C22B607 /* Pods-Rumblr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JAA59HR27W;
 				INFOPLIST_FILE = "$(SRCROOT)/Rumblr/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fm.combo.Rumblr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
