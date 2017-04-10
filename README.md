@@ -8,19 +8,21 @@ Welcome to the Rumblr iOS repo! If you've just stumbled across this repo, it mig
 
 Please note that you'll need a bit of a technical understanding to get this all set up - but there's a comprehensive step-by-step guide to doing so over on this blog.
 
-## Getting started
+## A couple of notes before setting up
+
+* **The server needs to be running on the same network as the client device AND the Sonos for this to work!** Yeah, it's far from ideal, but the Sonos bits require a bit of tunnel-y magic I haven't got round to trying yet. Would love to see any implementation of this, however!
+
+* For more information about the inner workings of the beacons, I've written some comments in the **BRELocationManager.swift** file. If you're keen to learn how to range and monitor beacons, I'd suggest flicking through some of my waffle over there.
+
+## Setting up
+
+### 0. Dependencies
 
 First, make sure Cocoapods is installed, navigate to the directory in the Terminal and enter:
 
 	pod install
 
 Once the associated Pods are installed, you're going to want to make a couple of file adjustments.
-
-## A couple of notes before setting up
-
-* **The server needs to be running on the same network as the client device AND the Sonos for this to work!** Yeah, it's far from ideal, but the Sonos bits require a bit of tunnel-y magic I haven't got round to trying yet. Would love to see any implementation of this, however!
-
-* For more information about the inner workings of the beacons, I've written some comments in the **BRELocationManager.swift** file. If you're keen to learn how to range and monitor beacons, I'd suggest flicking through some of my waffle over there.
 
 ### 1. Setting up for your own Beacons
 
