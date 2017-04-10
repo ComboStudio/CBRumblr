@@ -13,12 +13,18 @@ import UserNotifications
 enum BRELocationManagerError:Error {
     
     case bluetoothIsDisabled
+    case locationServicesAreDisabled
+    case rangingUnavailable
+    case unknownError
     
     var description:String {
         
         switch self {
             
         case .bluetoothIsDisabled: return "Bluetooth is currently disabled. Enable it on your device and try again!"
+        case .locationServicesAreDisabled: return "Location services are currently disabled for Rumblr. Head over to Settings and enable it in Location Services, then try again."
+        case .rangingUnavailable: return "Beacon ranging for this device is unavailable, sorry!"
+        case .unknownError: return "An unknown error occured whilst searching for beacons."
             
         }
         
@@ -64,7 +70,12 @@ class BRELocationManager: NSObject {
             let data = try? Data(contentsOf: url),
             let _dictionary = try? JSONSerialization.jsonObject(with: data, options: []),
             let dictionary = _dictionary as? [String:Any],
-            let regionsArray = dictionary["regions"] as? [[String:Any]] else { return }
+            let regionsArray = dictionary["regions"] as? [[String:Any]] else {
+                
+                print("Error occured: Beacons.json couldn't be parsed correctly. Make sure it's valid and try again.")
+                return
+        
+        }
         
         self.regionsArray = regionsArray.flatMap { return BREBeaconRegion(dictionary: $0) }
         
@@ -72,11 +83,27 @@ class BRELocationManager: NSObject {
     
     func beginMonitoring() {
         
+        // Right, before we actually start, we need to check that bluetooth is available and the required permissions have been given to the application. Let's do that before going any further...
+        
         bluetoothController.checkIfBluetoothIsEnabled { [weak self] (isEnabled:Bool) in
             
-            if isEnabled { self?.locationManager.requestAlwaysAuthorization() }
-            else { self?.delegate?.beaconScanningFailed(error: BRELocationManagerError.bluetoothIsDisabled) }
-            
+            if isEnabled {
+                
+                // It is, we're golden. Let's request authorization!
+                
+                self?.locationManager.requestAlwaysAuthorization()
+                return
+                
+            }
+                
+            else {
+                
+                // Bluetooth is disabled! Let's tell the user...
+                
+                self?.delegate?.beaconScanningFailed(error: BRELocationManagerError.bluetoothIsDisabled)
+                return
+                
+            }
         }
         
     }
@@ -110,7 +137,21 @@ extension BRELocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        guard status == .authorizedAlways else { print("Error occured when authorizing."); return }
+        if status == .notDetermined {
+            
+            // Not determined, but we can assume the user has been prompted.
+            return
+            
+        }
+        
+        guard status == .authorizedAlways else {
+            
+            // The status has been determined (i.e. the user has allowed/not allowed the
+            
+            delegate?.beaconScanningFailed(error: .locationServicesAreDisabled)
+            return
+            
+        }
         
         monitorRegions()
         
@@ -118,14 +159,11 @@ extension BRELocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error) {
         
-        print("Failed!")
-        print(error)
+        delegate?.beaconScanningFailed(error: BRELocationManagerError.unknownError)
         
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
-        print("Ranging...")
         
         guard let regionsArray = regionsArray else { return }
         

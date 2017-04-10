@@ -27,8 +27,10 @@ class BREBluetoothController: NSObject {
 extension BREBluetoothController: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
+                
         completionBlock?(central.state == .poweredOn)
+        
+        self.completionBlock = nil
         
     }
     
