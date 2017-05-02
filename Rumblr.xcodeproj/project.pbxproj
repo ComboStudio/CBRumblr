@@ -39,11 +39,9 @@
 		A9E363DC1E9A4BBC00944E50 /* BREGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E363DB1E9A4BBC00944E50 /* BREGradientView.swift */; };
 		A9E363DF1E9A51FE00944E50 /* BRETrackLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E363DE1E9A51FE00944E50 /* BRETrackLoadingTableViewCell.swift */; };
 		D3FD58FDEF2E051220ECDE7C /* Pods_Rumblr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4302A005C02342D26350B6 /* Pods_Rumblr.framework */; };
-		EA357C9862F70490A6E09AD7 /* Pods_BeaconRangingExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeaconRangingExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C58EE300BD850E0F663DA3 /* Pods-BeaconRangingExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconRangingExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconRangingExample/Pods-BeaconRangingExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4302A005C02342D26350B6 /* Pods_Rumblr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rumblr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91811FE1E9A27E00078417A /* BREShadowImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BREShadowImageView.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A92F36C31E8BDCCE00D61049 /* CoreBluetooth.framework in Frameworks */,
-				EA357C9862F70490A6E09AD7 /* Pods_BeaconRangingExample.framework in Frameworks */,
 				D3FD58FDEF2E051220ECDE7C /* Pods_Rumblr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				A92F36C21E8BDCCE00D61049 /* CoreBluetooth.framework */,
-				0A6299AE4D40E4BE127E9CAD /* Pods_BeaconRangingExample.framework */,
 				7A4302A005C02342D26350B6 /* Pods_Rumblr.framework */,
 			);
 			name = Frameworks;
