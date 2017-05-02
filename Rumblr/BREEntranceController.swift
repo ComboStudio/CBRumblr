@@ -48,7 +48,7 @@ class BREEntranceController: NSObject {
         
         guard let activeTrack = activeTrack else { return }
         
-        BREAPIController.performRequest(request: BREAPIRequest.requestSpotifyTrack(trackId: activeTrack.id)) { [weak self] (success:Bool, error:Error?, response:[String : Any]?) in
+        BREAPIController.performRequest(request: BREAPIRequest.requestSpotifyTrack(trackId: activeTrack.id)) { (success:Bool, error:Error?, response:[String : Any]?) in
             
             // Check for errors...
             
